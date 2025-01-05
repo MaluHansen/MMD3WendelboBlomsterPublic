@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+:root{
+    font-family: "source serif 4";
+
+    --karamelbrun: #BD954E;
+    --friskgrøn: #87B435;
+    --mørkegrøn:  #04502A;
+    --brun: #352817;
+    --gul: #F0E7B3;
+    --lysgrå: #E3E3E3;
+    --bodyTekst: #303030;
+    --knap: linear-gradient(90deg, #04502A 0%, rgba(0, 106, 53, 0.80) 50%, #04502A 100%);
+    --overlay: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.24) 27%, rgba(0, 0, 0, 0.60) 100%);
+
+    --sectionPadding: 64px 160px;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 18px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.btn-hvid{
+    border: 2px solid white;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 2rem;
+    transition: 0.2s ease-in-out;
+}
+.btn-gron{
+    border: 2px solid var(--mørkegrøn);
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: var(--mørkegrøn);
+    text-decoration: none;
+    display: inline-block;
+    margin: 2rem 0;
+    transition: 0.2s ease-in-out;
+}
+.btn-gron:hover{
+    color: white;
+    background: linear-gradient(90deg, #04502A 0%, rgba(0, 106, 53, 0.80) 50%, #04502A 100%);
+}
+
+.btn-hvid:hover{
+    background-color: white;
+    color: black;
+}
+
+h1{
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+h2{
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+h3{
+    font-size: 40px;
+    font-weight: 600;
+}
+.body-tekst{
+    line-height: 150%;
+    font-weight: 500;
+    margin: 1rem 0;
+}
+
+.logo{
+    font-family: "open sans";
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--mørkegrøn);
+}
+.logo-footer{
+    color: white;
+    font-size: 36px;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2.5rem;
+    padding: 2rem 1rem;
+}
+header div{
+    display: flex;
+}
+header nav a{
+    margin: 0 16px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+header i{
+    color: var(--mørkegrøn) ;
+    margin-left: 2rem;
+}
+
+.hero{
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 120px 160px;
+}
+.header-forside{
+    max-width: 23ch;
+}
+
+.hero p{
+    max-width: 60ch;
+}
+
+.udvalgte{
+    padding: var(--sectionPadding);
+    display: flex;
+    flex-direction: row;
+    gap: 6rem;
+    color: var(--bodyTekst);
+}
+
+.entryPoint-img{
+    height: 320px;
+    width: 470px;
+    background-color: #04502A;
+}
+
+.verdier{
+    display: flex;
+    background-color: rgba(189, 149, 78, 15%);
+    padding: var(--sectionPadding);
+    gap: 3rem;
+    text-align: center;
+}
+.verdier-i, .kunde-i{
+    color: var(--karamelbrun);
+    font-size: 32px;
+}
+.verdier-header{
+    font-weight: 600;
+    color: var(--brun);
+}
+.levering, .friskeblomster, .personligBindning{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.populare{
+    text-align: center;
+    color: var(--bodyTekst);
+    padding: var(--sectionPadding);
+}
+.produktbillede{
+    width: 250px;
+    height: 250px;
+    background-color: #04502A;
+}
+.cards{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+}
+.produkt-card{
+    text-align: left;
+}
+.produkt-navn{
+    margin: 0.5rem 0;
+}
+.produkt-pris{
+    font-weight: 700;
+    margin: 0;
+}
+
+.interflora{
+    padding: var(--sectionPadding);
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+}
+.interflora p{
+    width: 75ch;
+    align-items: center;
+    margin: auto ;
+}
+.interfloraLogo{
+    max-width: 150px;
+    margin: 1.5rem;
+}
+
+
+.serligDag{
+    padding: var(--sectionPadding);
+    text-align: center;
+}
+.jul-entry{
+    background-image: var(--overlay), url(/assets/img/jul.jpg);  
+}
+.nytar-entry{
+    background-image: var(--overlay), url(/assets/img/nytaar.jpg);
+}
+.bryllup-entry{
+    background-image: var(--overlay), url(/assets/img/bryllup.jpg);
+}
+.entry{
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 350px;
+    height: 315px;
+
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: 0.3s ease;
+}
+.entry:visited{
+    text-decoration: none;
+}
+.entry:hover{
+    opacity: 85%;
+}
+
+.kundeAnmeldelser{
+    background-color: rgba(189, 149, 78, 15%);
+    padding: var(--sectionPadding);
+    display: flex;
+    gap: 3rem;
+}
+.anmeldelse-card{
+    background-color: white;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    gap: 1rem;
+}
+.kundeBillede{
+    width: 60px;
+}
+.kundeCard-hr{
+    width: 90%;
+    height: 1px;
+    background-color: var(--karamelbrun);
+    border: none;
+}
+
+footer{
+    background-image: url(/assets/img/footer.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: var(--sectionPadding);
+    color: white;
+}
+.footerContent{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-kontakt{
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+.footer-links{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.footer-links a{
+    color: white;
+    text-decoration: none;
+}
+
+.socialeMedier i{
+    font-size: 36px;
+    margin: 1rem 1rem 1rem 0;
+}
+
