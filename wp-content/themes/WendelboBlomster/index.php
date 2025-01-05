@@ -39,7 +39,7 @@
             <div class="cards">
                 <div class="produkt-card">
                     <div class="
-                    produktbillede"></div>
+                    produktbillede"><?php woocommerce_get_template_part('name') ?></div>
                     <p class="produkt-navn">navn</p>
                     <p class="produkt-pris">pris kr</p>
                 </div>
