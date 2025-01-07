@@ -474,6 +474,141 @@ footer{
     row-gap: 2rem;
     
 }
-.shop-produkt-card{
+
+
+
+.produkt-display{
+    padding: var(--sectionPadding);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+.produkt-col-2{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.zoom-wrapper {
+    overflow: hidden;
+    position: relative;
+    cursor: zoom-in;
+}
+.produkt-main-billede{
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+.produkt-galleri{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.galleri-billede-wrapper{
+    flex: 1;
+}
+.galleri-billeder{
+    max-width: 100%;
+    aspect-ratio: 1;
+}
+.produkt-tekst h1{
+    font-size: 2rem;
+}
+.produkt-atributter{
+    display: flex;
+    justify-content: space-between;
+}
+.attribut-header{
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.farve-billede{
+    border-radius: 50%;
+    width: 25px;
+    margin-right: 1rem;
+}
+.kurv-btn{
+    width: 100%;
+    background-color: #004d25;
+    color: white;
+    font-size: 18px;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.kurv-btn:hover {
+    background-color: #00361a;
 }
 
+
+
+.storrelse-btn-container {
+    display: flex;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.storrelse-btn {
+    padding: 0.5rem 3rem;
+    font-size: 16px;
+    border: 2px solid var(--morkegron);
+    color: var(--bodyTekst);
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+}
+
+.storrelse-btn.active {
+    background-color: var(--morkegron);
+    color: white;
+}
+
+.storrelse-btn:hover {
+    background-color: #00361a;
+    color: white;
+}
+
+.storrelse-pris {
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+
+
+
+
+.kort, .vase {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.tilvalg-image {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.tilvalg-title {
+    font-weight: bold;
+}
+
+
+
+.tilvalg-link {
+    color: #007B2A;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.tilvalg-link:hover {
+    text-decoration: underline;
+}
