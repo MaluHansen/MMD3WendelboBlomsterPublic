@@ -145,6 +145,7 @@ header i{
     height: 320px;
     width: 470px;
     background-color: #04502A;
+    object-fit: cover;
 }
 
 .verdier{
@@ -174,26 +175,26 @@ header i{
     color: var(--bodyTekst);
     padding: var(--sectionPadding);
 }
-.produktbillede{
+.produkt-card{
     width: 250px;
     height: 250px;
-    background-color: #04502A;
+    background-color: #04502A;text-align: left;
+}
+.produkt-card:hover{
+    opacity: 85%;
 }
 .cards{
     display: flex;
     gap: 1rem;
     justify-content: space-evenly;
-    margin-bottom: 2rem;
+    margin-bottom: 8rem;
 }
-.produkt-card{
-    text-align: left;
-}
+
 .produkt-navn{
     margin: 0.5rem 0;
 }
 .produkt-pris{
     font-weight: 700;
-    margin: 0;
 }
 
 .interflora{
@@ -341,40 +342,8 @@ footer{
 }
 
 
-
-/* Hero Section */
-/* .shop-hero {
-    background-size: cover;
-    background-position: center;
-    padding: 50px 0;
-    text-align: center;
-    color: white;
-}
-
-.shop-hero h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    margin: 0;
-} */
-
-/* Introduction Section */
-.shop-intro {
-    text-align: center;
-    margin: 30px auto;
-    max-width: 600px;
-}
-
-.shop-intro h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.shop-intro p {
-    font-size: 1.2rem;
-    color: #555;
-}
-/* Hero Section */
-.shop-hero {
+/* Hero Section page */
+.page-hero {
     background-size: cover;
     background-position: center;
     padding: 60px 0;
@@ -383,12 +352,14 @@ footer{
 }
 
 
-/* Categories Grid */
+
+
 .produkt-kategori-wrapper {
     padding: var(--sectionPadding);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    row-gap: 3rem;
 }
 .produkt-kategori-entry{
     width: 100%;
@@ -426,12 +397,6 @@ footer{
     padding-bottom: 1rem;
     font-size: 16px;
     color: white;
-}
-
-
-
-.shop-header{
-    text-align: center;
 }
 
 

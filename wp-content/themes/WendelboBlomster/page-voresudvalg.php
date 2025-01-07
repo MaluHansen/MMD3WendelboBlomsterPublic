@@ -3,7 +3,11 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header(); ?>
-    <h1><?php the_title(); ?></h1> 
+<?php $feature_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
+<div class="page-hero" style="background-image: url('<?php echo esc_url($feature_image_url); ?>');">
+    <h1><?php the_title(); ?></h1>
+</div>
+    
     
     <?php
     // Check if this is a product category archive
