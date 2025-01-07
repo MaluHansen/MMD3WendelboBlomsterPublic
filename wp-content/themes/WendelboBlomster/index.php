@@ -41,7 +41,7 @@
                     <div class="
                     produktbillede"></div>
                     <p class="produkt-navn">navn</p>
-                    <p class="produkt-pris"><?php echo wc_get_price_to_display($product); ?></p>
+                    <p class="produkt-pris">pris</p>
                 </div>
                 <div class="produkt-card">
                     <div class="

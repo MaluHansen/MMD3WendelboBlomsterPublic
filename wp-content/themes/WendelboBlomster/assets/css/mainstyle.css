@@ -5,7 +5,7 @@
 
     --karamelbrun: #BD954E;
     --friskgrøn: #87B435;
-    --mørkegrøn:  #04502A;
+    --morkegron:  #04502A;
     --brun: #352817;
     --gul: #F0E7B3;
     --lysgrå: #E3E3E3;
@@ -37,14 +37,24 @@ body{
     transition: 0.2s ease-in-out;
 }
 .btn-gron{
-    border: 2px solid var(--mørkegrøn);
+    border: 2px solid var(--morkegron);
     border-radius: 4px;
     padding: 8px 12px;
     color: var(--mørkegrøn);
     text-decoration: none;
     display: inline-block;
     margin: 2rem 0;
-    transition: 0.2s ease-in-out;
+}
+.btn-fill-gron{
+    border: 2px solid var(--morkegron);
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: white;
+    background-color: var(--morkegron);
+    text-decoration: none;
+    display: inline-block;
+    margin: 2rem 0;
+    
 }
 .btn-gron:hover{
     color: white;
@@ -80,11 +90,13 @@ h3{
     font-family: "open sans";
     font-size: 24px;
     font-weight: 600;
-    color: var(--mørkegrøn);
+    color: var(--morkegron);
+    text-decoration: none;
 }
 .logo-footer{
     color: white;
     font-size: 36px;
+    text-decoration: none;
 }
 header{
     display: flex;
@@ -103,7 +115,7 @@ header nav a{
     font-weight: 500;
 }
 header i{
-    color: var(--mørkegrøn) ;
+    color: var(--morkegron) ;
     margin-left: 2rem;
 }
 
@@ -295,5 +307,220 @@ footer{
 .socialeMedier i{
     font-size: 36px;
     margin: 1rem 1rem 1rem 0;
+}
+
+.center-header{
+    text-align: center;
+    margin: 3rem 0;
+}
+/* ----------------------------------------------------------- DIN KURV ------------------------------------------------------------*/
+.hero-kurv{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 25rem;
+}
+.breadcrumbs{
+    color: rgb(136, 146, 156);
+    text-decoration: none;
+    margin-left: 6rem;
+}
+.kurven{
+    padding: var(--sectionPadding);
+    display: flex;
+    justify-content: space-between;
+}
+.produktIKurv{
+    border: 2px solid var(--morkegron);
+    padding: 1rem;
+    display: flex;
+}
+.rabatkode{
+    border: 2px solid var(--morkegron);
+    padding: 1rem;
+}
+
+
+
+/* Hero Section */
+/* .shop-hero {
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+    text-align: center;
+    color: white;
+}
+
+.shop-hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+} */
+
+/* Introduction Section */
+.shop-intro {
+    text-align: center;
+    margin: 30px auto;
+    max-width: 600px;
+}
+
+.shop-intro h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.shop-intro p {
+    font-size: 1.2rem;
+    color: #555;
+}
+/* Hero Section */
+.shop-hero {
+    background-size: cover;
+    background-position: center;
+    padding: 60px 0;
+    text-align: center;
+    color: white;
+}
+
+
+/* Categories Grid */
+.produkt-kategori-wrapper {
+    padding: var(--sectionPadding);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+.produkt-kategori-entry{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.kategori-billede{
+    width: 100%;
+}
+.kategori-entry-link{
+    text-decoration: none; 
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.kategori-entry-link:hover{
+    opacity: 85%;
+}
+
+.kategori-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+.produkt-kategori-navn {
+    position: absolute;
+    padding-bottom: 3rem;
+    font-size: 24px;
+    color: white;
+}
+.produkt-antal {
+    position: absolute;
+    padding-bottom: 1rem;
+    font-size: 16px;
+    color: white;
+}
+
+
+
+.shop-header{
+    text-align: center;
+}
+
+
+/* Shop layout */
+.shop-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Sidebar til filtre */
+.shop-sidebar {
+    width: 20%;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.shop-sidebar h2 {
+    margin-bottom: 10px;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h3 {
+    margin-bottom: 5px;
+}
+
+.filter-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter-section li {
+    margin-bottom: 5px;
+}
+
+.filter-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #004d25;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-button:hover {
+    background-color: #007033;
+}
+
+/* Produktgitter */
+.shop-main {
+    width: 75%;
+}
+
+.products-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.products-wrapper .product {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: white;
+    text-align: center;
+}
+
+.products-wrapper .product img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.products-wrapper .product h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.products-wrapper .product .price {
+    font-size: 1em;
+    color: #333;
 }
 

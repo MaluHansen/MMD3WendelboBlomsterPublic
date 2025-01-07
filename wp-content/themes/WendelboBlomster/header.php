@@ -9,15 +9,15 @@
 </head>
 <body>
     <header> 
-        <p class="logo">Wendelbo Blomster</p>
+        <a href="<?php echo site_url('/index') ?>" class="logo">Wendelbo Blomster</a>
         <div>
         <nav>
-            <a href="#">Forside</a>
-            <a href="#">Vores Udvalg</a>
-            <a href="#">Anledninger</a>
+            <a href="<?php echo site_url('/index') ?>">Forside</a>
+            <a href="<?php echo site_url('/voresudvalg') ?>">Vores Udvalg</a>
+            <a href="<?php echo site_url('/anledninger') ?>">Anledninger</a>
             <a href="#">Inspiration</a>
-            <a href="#">Vores Udvalg</a>
+            <a href="#">Om Butikken</a>
         </nav>
-        <i class="fa-solid fa-basket-shopping"></i>
+        <a href="<?php echo site_url('/cart') ?>"><i class="fa-solid fa-basket-shopping"></i></a>
         </div>
     </header>
