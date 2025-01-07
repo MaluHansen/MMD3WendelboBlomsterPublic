@@ -1,14 +1,10 @@
 <?php
-defined( 'ABSPATH' ) || exit;
 
 get_header(); ?>
 
 <main>
 <h1 class="shop-header"><?php woocommerce_page_title(); ?></h1>
-
 <div class="shop-container">
-    
-
     <!-- Sidebar til filtre -->
     <aside class="shop-sidebar">
         <h2>Filtre</h2>
@@ -33,20 +29,10 @@ get_header(); ?>
 
     <!-- Hovedområde til produkter -->
     <div class="shop-main">
-        
-
-        <div class="products-wrapper">
-            <?php if ( have_posts() ) : ?>
-                <?php woocommerce_product_loop_start(); ?>
-
-                <?php while ( have_posts() ) : ?>
-                    <?php the_post(); ?>
-                    <?php wc_get_template_part( 'content', 'product' ); ?>
-                <?php endwhile; ?>
-
-                <?php woocommerce_product_loop_end(); ?>
-            <?php endif; ?>
-        </div>
+        <?php while ( have_posts() ) :
+        the_post();
+        wc_get_template_part( 'content', 'product' );
+        endwhile; ?>
     </div>
 
 </div>

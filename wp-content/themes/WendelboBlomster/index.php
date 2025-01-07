@@ -92,7 +92,7 @@
             foreach ( $categories as $slug => $image ) :
                 $link = get_term_link( $slug, 'product_cat' );
                ?>
-                <a class="-entry entry" href="<?php echo esc_url( $link ); ?>" 
+                <a class="entry" href="<?php echo esc_url( $link ); ?>" 
                 style="background-image: url(<?php echo esc_url( get_theme_file_uri( 'assets/img/' . $image ) ); ?>);">
                     <?php echo esc_html( ucfirst( $slug ) ); ?>
                 </a>

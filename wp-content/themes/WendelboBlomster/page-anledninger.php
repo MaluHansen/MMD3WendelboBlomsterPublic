@@ -2,10 +2,11 @@
 <main>
     <?php $feature_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
     <div class="page-hero" style="background-image: url('<?php echo esc_url($feature_image_url); ?>');">
-        <p><?php the_content(); ?></p>
+        <p>Gør hver anledning særlig med blomster</p>
     </div>
+    <h1 class="page-hero-h1"><?php the_title();?></h1>
+    <h4 class="page-hero-p"><?php the_content(); ?></h4>
     <?php
- 
     $categories = get_terms( array(
         'taxonomy'   => 'product_cat',
         'parent'     => 23 //der skal kun vises kategorier som er en subkategori til alle produkter(id=23)

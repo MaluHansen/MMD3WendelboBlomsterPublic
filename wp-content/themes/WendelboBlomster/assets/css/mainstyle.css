@@ -233,7 +233,6 @@ header i{
     background-repeat: no-repeat;
     width: 350px;
     height: 315px;
-
     text-decoration: none;
     color: white;
     font-size: 24px;
@@ -346,9 +345,21 @@ footer{
 .page-hero {
     background-size: cover;
     background-position: center;
-    padding: 60px 0;
+    padding: 8rem 4rem;
     text-align: center;
     color: white;
+    font-weight: 600;
+    font-size: 3rem;
+}
+.page-hero-h1{
+    color: var(--bodyTekst);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 3rem;
+}
+.page-hero-p{
+    text-align: center;
+    font-weight: 400;
 }
 
 
@@ -359,7 +370,7 @@ footer{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    row-gap: 3rem;
+    row-gap: 4rem;
 }
 .produkt-kategori-entry{
     width: 100%;
@@ -401,6 +412,9 @@ footer{
 
 
 /* Shop layout */
+.shop-header{
+    text-align: center;
+}
 .shop-container {
     display: flex;
     gap: 20px;
@@ -456,15 +470,16 @@ footer{
 
 /* Produktgitter */
 .shop-main {
-    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.products-wrapper {
+/* .products-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-}
-
+} */
+/* 
 .products-wrapper .product {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -487,5 +502,5 @@ footer{
 .products-wrapper .product .price {
     font-size: 1em;
     color: #333;
-}
+} */
 
