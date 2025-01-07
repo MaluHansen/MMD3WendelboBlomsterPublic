@@ -31,8 +31,16 @@ get_header(); ?>
     <div class="shop-main">
         <?php while ( have_posts() ) :
         the_post();
-        wc_get_template_part( 'content', 'product' );
-        endwhile; ?>
+        global $product; // woocommerce standart var til de produkter der oprettes i wp backend 
+        ?>
+        <div class="shop-produkt-card">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php echo woocommerce_get_product_thumbnail(); ?>
+                    </a>
+                    <p class="produkt-navn"><?php the_title(); ?></p>
+                    <p class="produkt-pris"><?php echo $product->get_price_html(); ?></p>
+                </div>
+       <?php endwhile; ?>
     </div>
 
 </div>
