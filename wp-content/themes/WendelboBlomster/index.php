@@ -34,30 +34,50 @@
             </div>
         </section>
         <section class="populare">
-            <h2>Sæsonens mest populære buketter</h2>
-            <p class="body-tekst">De meste købte buketter lige nu</p>
-            <div class="cards">
+    <h2>Sæsonens mest populære buketter</h2>
+    <p class="body-tekst">De mest købte buketter lige nu</p>
+    <div class="cards">
+        <?php
+        // Hent 3 produkter fra kategorien "Buketter"
+        $args = array(
+            'post_type' => 'product',
+            'posts_per_page' => 3,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'slug', // Brug slug for at matche kategorien "Buketter"
+                    'terms'    => 'buketter',
+                ),
+            ),
+        );
+        $buketter_query = new WP_Query( $args );
+
+        // Loop gennem produkterne
+        if ( $buketter_query->have_posts() ) {
+            while ( $buketter_query->have_posts() ) {
+                $buketter_query->the_post();
+                global $product; // WooCommerce produkt objekt
+                ?>
                 <div class="produkt-card">
-                    <div class="
-                    produktbillede"></div>
-                    <p class="produkt-navn">navn</p>
-                    <p class="produkt-pris">pris</p>
+                    <div class="produktbillede">
+                        <a href="<?php the_permalink(); ?>">
+                            <?php echo woocommerce_get_product_thumbnail(); ?>
+                        </a>
+                    </div>
+                    <p class="produkt-navn"><?php the_title(); ?></p>
+                    <p class="produkt-pris"><?php echo $product->get_price_html(); ?></p>
                 </div>
-                <div class="produkt-card">
-                    <div class="
-                    produktbillede"></div>
-                    <p class="produkt-navn">navn</p>
-                    <p class="produkt-pris">pris kr</p>
-                </div>
-                <div class="produkt-card">
-                    <div class="
-                    produktbillede"></div>
-                    <p class="produkt-navn">navn</p>
-                    <p class="produkt-pris">pris kr</p>
-                </div>
-            </div>
-            <a href="#" class="btn-gron">Se alle buketter</a>
-        </section>
+                <?php
+            }
+        } else {
+            echo '<p>Ingen buketter fundet.</p>';
+        }
+        wp_reset_postdata(); // Nulstil forespørgslen
+        ?>
+    </div>
+    <a href="<?php echo get_term_link( 'buketter', 'product_cat' ); ?>" class="btn-gron">Se alle buketter</a>
+</section>
+
         <section class="interflora" style="background-image: url(<?php echo get_theme_file_uri('assets/img/samarbejde.jpg') ?>);">
             <h3>Samarbejde med Interflora</h3>
             <img class="interfloraLogo" src="<?php echo get_theme_file_uri('assets/img/interflora-logo.png'); ?>" alt="Interfloras logo">
@@ -66,10 +86,23 @@
         <section class="serligDag">
             <h2>Til en særlig dag</h2>
             <div class="cards">
-                <a class="jul-entry entry" href="#" style="background-image: url(<?php echo get_theme_file_uri('assets/img/jul.jpg') ?>);">Jul</a>
-                <a class="nytar-entry entry" href="#" style="background-image: url(<?php echo get_theme_file_uri('assets/img/nytaar.jpg') ?>);">Nytår</a>
-                <a class="bryllup-entry entry" href="#" style="background-image: url(<?php echo get_theme_file_uri('assets/img/bryllup.jpg') ?>);">Bryllup</a>
-            </div>
+    <?php
+    $categories = [
+        'jul' => 'jul.jpg',
+        'nytar' => 'nytaar.jpg',
+        'bryllup' => 'bryllup.jpg',
+    ];
+
+    foreach ( $categories as $slug => $image ) :
+        $link = get_term_link( $slug, 'product_cat' );
+        if ( ! is_wp_error( $link ) ) : ?>
+            <a class="<?php echo esc_attr( $slug ); ?>-entry entry" href="<?php echo esc_url( $link ); ?>" style="background-image: url(<?php echo esc_url( get_theme_file_uri( 'assets/img/' . $image ) ); ?>);">
+                <?php echo esc_html( ucfirst( $slug ) ); ?>
+            </a>
+        <?php endif;
+    endforeach; ?>
+</div>
+
         </section>
         <section class="kundeAnmeldelser">
             <div class="anmeldelse-card">
