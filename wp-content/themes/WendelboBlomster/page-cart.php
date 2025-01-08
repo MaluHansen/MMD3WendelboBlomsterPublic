@@ -68,7 +68,7 @@ get_header();
                         <i class="fa-solid fa-ticket"></i>
                         <input type="text" class="rabatkode" name="rabatkodefelt" placeholder="Tilføj rabatkode">
                     </div>
-                    <a href="<?php echo site_url('/levering') ?>">Fortsæt til betaling</a>
+                    <a class="tilBetaling-btn" href="<?php echo site_url('/levering') ?>">Fortsæt til betaling ></a>
 
                 </div>
             </div>
