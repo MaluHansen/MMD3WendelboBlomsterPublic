@@ -16,11 +16,11 @@
                 </div>
             </div>
             <div class="footer-links">
-                <a href="#">Forside</a>
-                <a href="#">Vores udvalg</a>
-                <a href="#">Anledning</a>
-                <a href="#">Inspiration</a>
-                <a href="#">Om os</a>
+            <a href="<?php echo site_url('/index') ?>">Forside</a>
+            <a href="<?php echo site_url('/voresudvalg') ?>">Vores Udvalg</a>
+            <a href="<?php echo site_url('/anledninger') ?>">Anledninger</a>
+            <a href="<?php echo site_url('/inspiration') ?>">Inspiration</a>
+            <a href="<?php echo site_url('/om-butikken') ?>">Om Butikken</a>
             </div>
             <div class="socialeMedier">
                 <p>Følg os her</p>

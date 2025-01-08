@@ -15,8 +15,8 @@
             <a href="<?php echo site_url('/index') ?>">Forside</a>
             <a href="<?php echo site_url('/voresudvalg') ?>">Vores Udvalg</a>
             <a href="<?php echo site_url('/anledninger') ?>">Anledninger</a>
-            <a href="#">Inspiration</a>
-            <a href="#">Om Butikken</a>
+            <a href="<?php echo site_url('/inspiration') ?>">Inspiration</a>
+            <a href="<?php echo site_url('/om-butikken') ?>">Om Butikken</a>
         </nav>
         <div class="header-cart">
         <a href="<?php echo site_url('/cart') ?>"><i class="fa-solid fa-basket-shopping"></i> </a>
