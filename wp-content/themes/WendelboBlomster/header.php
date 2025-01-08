@@ -18,6 +18,9 @@
             <a href="#">Inspiration</a>
             <a href="#">Om Butikken</a>
         </nav>
-        <a href="<?php echo site_url('/cart') ?>"><i class="fa-solid fa-basket-shopping"></i></a>
+        <div class="header-cart">
+        <a href="<?php echo site_url('/cart') ?>"><i class="fa-solid fa-basket-shopping"></i> </a>
+        </div>
+        
         </div>
     </header>

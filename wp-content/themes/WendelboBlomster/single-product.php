@@ -108,6 +108,7 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 					<form class="cart" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="add-to-cart" value="<?php echo absint($product->get_id()); ?>">
 						<button type="submit" class="kurv-btn">Læg i kurv <i class="fa-solid fa-basket-shopping"></i></button>
+						
 					</form>
 				<?php } ?>
 			</div>
@@ -118,7 +119,6 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 						<div class="tilvalg-content">
 							<p class="tilvalg-title">Kort</p>
 							<p class="tilvalg-price">5 kr.</p>
-							<a href="#" class="tilvalg-link">Læs mere</a>
 						</div>
 					</div>
 					<div class="vase">
@@ -126,7 +126,6 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 						<div class="tilvalg-content">
 							<p class="tilvalg-title">Vase</p>
 							<p class="tilvalg-price">49 kr.</p>
-							<a href="#" class="tilvalg-link">Læs mere</a>
 						</div>
 					</div>
 				</div>
@@ -166,8 +165,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Tjek om det er et variabelt produkt og om en variation er valgt
             if (variationInput && variationInput.value === '' && form.classList.contains('variations_form')) {
-                alert('Vælg en størrelse, før du lægger i kurv.');
-                return;
+                 // Hent alle knapper med klassen .storrelse-btn
+					const sizeButtons = document.querySelectorAll('.storrelse-btn');
+
+				// Tilføj rysteklasse og rød kant
+				sizeButtons.forEach(button => {
+					button.classList.add('shake');
+				});
+
+				// Fjern rysteklasse efter animationen er færdig
+				setTimeout(() => {
+					sizeButtons.forEach(button => {
+						button.classList.remove('shake');
+					});
+				}, 500); // 500ms svarer til animationens varighed
+
+				// Stop formularindsendelsen
+				return;
             }
 
             // Send AJAX-request til WooCommerce for at tilføje produkt til kurven
@@ -189,4 +203,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+
+
+
+
 </script>

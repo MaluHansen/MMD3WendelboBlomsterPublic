@@ -74,7 +74,7 @@ get_header();
             </div>
         <?php } else { ?>
             <p>Din kurv er tom.</p>
-            <a href="<?php echo site_url('/voresudvalg') ?>" class="btn-fill-gron">Gå til shoppen</a>
+            <a href="<?php echo site_url('/voresudvalg') ?>" class="btn-fill-gron tilShop-btn">Gå til shoppen</a>
         <?php }; ?>
     </div>
         

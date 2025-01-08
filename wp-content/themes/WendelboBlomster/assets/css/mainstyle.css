@@ -653,6 +653,9 @@ footer{
 .kurv-btn:hover, .tilBetaling-btn:hover {
     background-color: #00361a;
 }
+.kurv-btn:active, .tilBetaling-btn:active{
+background-color: #094e2a;
+}
 .tilBetaling-btn{
     width: 80%;
     margin-top: 3rem;
@@ -666,6 +669,9 @@ footer{
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+.tilShop-btn{
+    width: max-content;
 }
 
 
@@ -685,7 +691,26 @@ footer{
     background-color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    transition: border 0.3s ease;
     border-radius: 6px;
+}
+.storrelse-btn.shake {
+    animation: shake 0.5s ease;
+    border: 2px solid red;
+}
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
 }
 
 .storrelse-btn.active {
@@ -739,8 +764,3 @@ footer{
 .tilvalg-link:hover {
     text-decoration: underline;
 }
-
-
-
-
-
