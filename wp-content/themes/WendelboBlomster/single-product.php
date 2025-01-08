@@ -47,7 +47,8 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 			</div>
 			
 			<div class="produkt-atributter">
-				<div class="farver">
+				<?php if ( ! empty( $product->get_attribute('farve') ) ){ ?>
+					<div class="farver">
 					<p class="attribut-header">Farve</p>
 					<?php
 					$farver = $product->get_attribute('farve'); // Hent farve-attributten
@@ -65,44 +66,51 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 					}
 					?>
 				</div>
+				<?php }; ?>
+
+				<?php if ( ! empty( $product->get_attribute('duft') ) ){ ?>
 				<div class="duft">
 					<p class="attribut-header">Duft</p>
 					<p><?php echo esc_html( $product->get_attribute( 'duft' ) ); ?></p>
 				</div>
-				<div class="stil">
+				<?php }; ?>
+
+				<?php if ( ! empty( $product->get_attribute('stil') ) ){ ?>
+					<div class="stil">
 					<p class="attribut-header">stil</p>
 					<p><?php echo esc_html( $product->get_attribute( 'stil' ) ); ?></p>
 				</div>
-
-			
+				<?php }; ?>
 			</div>
+
 			<div class="storrelse">
-					<form class="variations_form cart" method="post" enctype="multipart/form-data" data-product_id="<?php echo absint( $product->get_id() ); ?>">
+				<?php if ($product->is_type('variable')) { ?>
+					<form class="variations_form cart" method="post" enctype="multipart/form-data">
 						<div class="storrelse-btn-container">
 							<?php
-							// Hent variationerne for det aktuelle produkt
 							$available_variations = $product->get_available_variations();
-							$attributes = $product->get_variation_attributes();
-
-							foreach ( $available_variations as $variation ) {
-								$variation_id = $variation['variation_id']; // Hent variationens ID
-								$storrelse = $variation['attributes']['attribute_pa_storrelse']; // Hent størrelse
-								$pris = wc_price( $variation['display_price'] ); // Hent prisen
+							foreach ($available_variations as $variation) {
+								$variation_id = $variation['variation_id'];
+								$storrelse = $variation['attributes']['attribute_pa_storrelse'];
+								$pris = wc_price($variation['display_price']);
 								?>
-								<button type="button" class="storrelse-btn" data-variation-id="<?php echo esc_attr( $variation_id ); ?>"onclick="selectVariation('<?php echo esc_attr( $variation_id ); ?>')">
-									<p class="storrelse-label"><?php echo ucfirst( $storrelse ); ?></p>
+								<button type="button" class="storrelse-btn" data-variation-id="<?php echo esc_attr($variation_id); ?>">
+									<p class="storrelse-label"><?php echo ucfirst($storrelse); ?></p>
 									<p class="storrelse-pris"><?php echo $pris; ?></p>
 								</button>
-			
-								<?php
-							}
-							?>
+							<?php } ?>
 						</div>
 						<input type="hidden" name="variation_id" id="variation_id" value="">
-						<input type="hidden" name="add-to-cart" value="<?php echo absint( $product->get_id() ); ?>">
+						<input type="hidden" name="add-to-cart" value="<?php echo absint($product->get_id()); ?>">
 						<button type="submit" class="kurv-btn">Læg i kurv <i class="fa-solid fa-basket-shopping"></i></button>
 					</form>
-				</div>
+				<?php } else { ?>
+					<form class="cart" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="add-to-cart" value="<?php echo absint($product->get_id()); ?>">
+						<button type="submit" class="kurv-btn">Læg i kurv <i class="fa-solid fa-basket-shopping"></i></button>
+					</form>
+				<?php } ?>
+			</div>
 
 				<div class="tilvalg">
 					<div class="kort">
@@ -131,14 +139,54 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 
 <?php get_footer(); ?>
 <script>
-function selectVariation(variationId) {
-	// Sæt den valgte variation i det skjulte input-felt
-	document.getElementById('variation_id').value = variationId;
+document.addEventListener('DOMContentLoaded', function () {
+    const variationButtons = document.querySelectorAll('.storrelse-btn');
+    const variationInput = document.getElementById('variation_id');
+    const addToCartButtons = document.querySelectorAll('.kurv-btn');
 
-	// Fjern aktiv-klasse fra alle knapper og tilføj til den valgte
-	document.querySelectorAll('.storrelse-button').forEach(function(button) {
-		button.classList.remove('active');
-	});
-	document.querySelector('button[data-variation-id="' + variationId + '"]').classList.add('active');
-}
+    // Håndter klik på størrelsesknapperne for variable produkter
+    variationButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Fjern 'active' fra alle knapper og tilføj til den valgte
+            variationButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            // Sæt variation ID i det skjulte inputfelt
+            variationInput.value = this.dataset.variationId;
+        });
+    });
+
+    // Håndter 'Læg i kurv'-knappen for både simple og variable produkter
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault(); // Forhindrer sideopdatering
+
+            const form = this.closest('form');
+            const formData = new FormData(form);
+
+            // Tjek om det er et variabelt produkt og om en variation er valgt
+            if (variationInput && variationInput.value === '' && form.classList.contains('variations_form')) {
+                alert('Vælg en størrelse, før du lægger i kurv.');
+                return;
+            }
+
+            // Send AJAX-request til WooCommerce for at tilføje produkt til kurven
+            fetch('/?wc-ajax=add_to_cart', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('Der opstod en fejl: ' + data.message);
+                } else {
+                    alert('Produkt tilføjet til kurven!');
+                    // Opdater kurven (valgfrit)
+                    jQuery(document.body).trigger('wc_fragment_refresh');
+                }
+            })
+            .catch(error => console.error('Fejl:', error));
+        });
+    });
+});
 </script>
