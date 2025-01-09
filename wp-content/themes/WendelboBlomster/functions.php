@@ -1,6 +1,7 @@
 <?php
 function wendelbo_files(){
     wp_enqueue_style('main_styles', get_theme_file_uri('assets/css/mainstyle.css'));
+    wp_enqueue_script('main_script', get_theme_file_uri('assets/js/scripts.js'));
 }
 add_action('wp_enqueue_scripts', 'wendelbo_files');
 
@@ -32,4 +33,79 @@ function update_cart_quantity() {
     }
 
     wp_die();
+}
+
+
+//---------------- Woocommerce default filtrerings systems
+add_action('woocommerce_product_query', 'custom_product_filter');
+
+function custom_product_filter($query) {
+    if (is_admin() || !$query->is_main_query() || (!is_shop() && !is_product_taxonomy())) {
+        return;
+    }
+
+    $tax_query = $query->get('tax_query') ? $query->get('tax_query') : [];
+
+    // Hent alle produktattributter fra WooCommerce
+    $attributes = wc_get_attribute_taxonomies();
+
+    foreach ($attributes as $attribute) {
+        $taxonomy = wc_attribute_taxonomy_name($attribute->attribute_name); // F.eks. 'pa_farve'
+
+        // Spring over farve-taksonomien
+        if ($taxonomy === 'pa_farve') {
+            continue; // Ignorer farver og gå videre til næste taksonomi
+        }
+
+        // Kontroller om $_GET indeholder værdier for denne taksonomi
+        if (isset($_GET[$taxonomy]) && !empty($_GET[$taxonomy])) {
+            $selected_terms = $_GET[$taxonomy];
+
+            // Sørg for, at værdierne altid er arrays
+            if (!is_array($selected_terms)) {
+                $selected_terms = [sanitize_text_field($selected_terms)];
+            } else {
+                $selected_terms = array_map('sanitize_text_field', $selected_terms);
+            }
+
+            // Tilføj til tax_query
+            $tax_query[] = [
+                'taxonomy' => $taxonomy,
+                'field'    => 'slug',
+                'terms'    => $selected_terms,
+                'operator' => 'AND', // Kun produkter, der matcher alle valgte værdier
+            ];
+        }
+    }
+
+    // Debugging: Log tax_query for at kontrollere strukturen
+    error_log(print_r($tax_query, true));
+
+    // Tilføj tax_query til WooCommerce-forespørgslen
+    if (!empty($tax_query)) {
+        $query->set('tax_query', $tax_query);
+    }
+}
+add_action('woocommerce_product_query', 'custom_product_filter_farve');
+
+function custom_product_filter_farve($query) {
+    if (is_admin() || ! $query->is_main_query() || (!is_shop() && !is_product_taxonomy())) {
+        return;
+    }
+
+    $tax_query = $query->get('tax_query') ? $query->get('tax_query') : [];
+
+    // Filtrer baseret på Farve
+    if (isset($_GET['farve']) && !empty($_GET['farve'])) {
+        $tax_query[] = [
+            'taxonomy' => 'pa_farve', // Slug for Farve-attributten
+            'field'    => 'slug',
+            'terms'    => $_GET['farve'],
+            'operator' => 'IN',
+        ];
+    }
+
+    if (!empty($tax_query)) {
+        $query->set('tax_query', $tax_query);
+    }
 }

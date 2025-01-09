@@ -51,17 +51,17 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 					<div class="farver">
 					<p class="attribut-header">Farve</p>
 					<?php
-					$farver = $product->get_attribute('farve'); // Hent farve-attributten
-					$farve_terms = explode(', ', $farver); // Håndter flere farver, hvis de er angivet
+					$farver = $product->get_attribute('farve');
+					$farve_terms = explode(', ', $farver);
 
 					foreach ($farve_terms as $farve_slug) {
-						$term = get_term_by('name', $farve_slug, 'pa_farve'); // Hent term baseret på navn
-						$image_url = get_field('farvebillede', $term); // Hent billed-URL fra ACF
+						$term = get_term_by('name', $farve_slug, 'pa_farve');
+						$image_url = get_field('farvebillede', $term);
 
 						if ($image_url) {
 							echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($farve_slug) . '" class="farve-billede">';
 						} else {
-							echo '<p>' . esc_html($farve_slug) . '</p>'; // Fallback til tekst, hvis der ikke er billede
+							echo '<p>' . esc_html($farve_slug) . '</p>';
 						}
 					}
 					?>
@@ -103,12 +103,13 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 						<input type="hidden" name="variation_id" id="variation_id" value="">
 						<input type="hidden" name="add-to-cart" value="<?php echo absint($product->get_id()); ?>">
 						<button type="submit" class="kurv-btn">Læg i kurv <i class="fa-solid fa-basket-shopping"></i></button>
+	
 					</form>
 				<?php } else { ?>
 					<form class="cart" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="add-to-cart" value="<?php echo absint($product->get_id()); ?>">
 						<button type="submit" class="kurv-btn">Læg i kurv <i class="fa-solid fa-basket-shopping"></i></button>
-						
+
 					</form>
 				<?php } ?>
 			</div>
@@ -137,76 +138,3 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 </main>
 
 <?php get_footer(); ?>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const variationButtons = document.querySelectorAll('.storrelse-btn');
-    const variationInput = document.getElementById('variation_id');
-    const addToCartButtons = document.querySelectorAll('.kurv-btn');
-
-    // Håndter klik på størrelsesknapperne for variable produkter
-    variationButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            // Fjern 'active' fra alle knapper og tilføj til den valgte
-            variationButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            // Sæt variation ID i det skjulte inputfelt
-            variationInput.value = this.dataset.variationId;
-        });
-    });
-
-    // Håndter 'Læg i kurv'-knappen for både simple og variable produkter
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault(); // Forhindrer sideopdatering
-
-            const form = this.closest('form');
-            const formData = new FormData(form);
-
-            // Tjek om det er et variabelt produkt og om en variation er valgt
-            if (variationInput && variationInput.value === '' && form.classList.contains('variations_form')) {
-                 // Hent alle knapper med klassen .storrelse-btn
-					const sizeButtons = document.querySelectorAll('.storrelse-btn');
-
-				// Tilføj rysteklasse og rød kant
-				sizeButtons.forEach(button => {
-					button.classList.add('shake');
-				});
-
-				// Fjern rysteklasse efter animationen er færdig
-				setTimeout(() => {
-					sizeButtons.forEach(button => {
-						button.classList.remove('shake');
-					});
-				}, 500); // 500ms svarer til animationens varighed
-
-				// Stop formularindsendelsen
-				return;
-            }
-
-            // Send AJAX-request til WooCommerce for at tilføje produkt til kurven
-            fetch('/?wc-ajax=add_to_cart', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    alert('Der opstod en fejl: ' + data.message);
-                } else {
-                    alert('Produkt tilføjet til kurven!');
-                    // Opdater kurven (valgfrit)
-                    jQuery(document.body).trigger('wc_fragment_refresh');
-                }
-            })
-            .catch(error => console.error('Fejl:', error));
-        });
-    });
-});
-
-
-
-
-
-
-</script>

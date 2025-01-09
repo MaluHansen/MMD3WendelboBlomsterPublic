@@ -755,12 +755,107 @@ background-color: #094e2a;
 
 
 
-.tilvalg-link {
-    color: #007B2A;
+.tilbage-link{
     text-decoration: none;
-    font-size: 14px;
+    text-align: left;
 }
 
-.tilvalg-link:hover {
-    text-decoration: underline;
+.checkout-main{
+    padding: var(--sectionPadding);
+    text-align: center;
+    animation: fadeInSlide 1s ease forwards;
+}
+@keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+}
+.fade-out {
+    animation: fadeOutSlide 0.8s ease forwards;
+}
+@keyframes fadeOutSlide {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+}
+
+
+.checkout-header{
+    font-size: 3rem;
+}
+
+
+.progress-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    right: 5%;
+    height: 4px;
+    background-color: #dceee5;
+    z-index: 0;
+    transform: translateY(-50%);
+}
+
+
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Circle for each step */
+.cirkel {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #dceee5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+/* Completed steps */
+.step.completed .cirkel {
+    background-color: var(--morkegron); /* Mørk grøn farve */
+    color: #fff;
+}
+
+/* Text under each step */
+.step p {
+    color: #333;
+    margin: 0;
+}
+
+.kurv-feedback-besked{
+    display: none;
+}
+.kurv-feedback-besked-show{
+    display: block;
 }
