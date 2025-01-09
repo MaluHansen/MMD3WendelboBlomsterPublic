@@ -310,9 +310,9 @@ class BlockTemplateUtils {
 			'taxonomy-product_tag.html',
 		);
 
-		if ( Features::is_enabled( 'launch-your-store' ) ) {
-			$wp_template_filenames[] = 'coming-soon.html';
-		}
+		// if ( Features::is_enabled( 'launch-your-store' ) ) {
+		// 	$wp_template_filenames[] = 'coming-soon.html';
+		// }
 
 		$wp_template_part_filenames = array(
 			'checkout-header.html',
