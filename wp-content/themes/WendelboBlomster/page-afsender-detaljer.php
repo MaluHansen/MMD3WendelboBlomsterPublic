@@ -19,7 +19,7 @@
         <p>Betaling</p>
     </div>
     </div>
-    <h1 class="center-header"><?php the_title()?></h1>
+    <h1 class="center-header checkout-header"><?php the_title()?></h1>
 
 
     <a class="tilBetaling-btn transition-link" href="<?php echo site_url('/bekraeft-bestilling') ?>">Fortsæt til bekræft ></a>

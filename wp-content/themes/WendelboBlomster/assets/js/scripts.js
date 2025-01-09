@@ -1,5 +1,5 @@
 
-//page transition script------------------------------------------
+//-------------------page transition script-------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('.transition-link');
     
@@ -84,3 +84,58 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //-------------------------------------------------------
+//--------------------Script til visning af burgermenu--------------------------
+document.addEventListener('DOMContentLoaded', function() {
+    const burgerMenu = document.querySelector('.burgerMenu');
+    const navMobil = document.querySelector('.nav-mobil');
+    const closeMenu = document.querySelector('.fa-xmark');
+
+    // Funktion til at vise menuen
+    burgerMenu.addEventListener('click', function() {
+        navMobil.style.display = 'flex';
+        navMobil.classList.add('active');
+    });
+
+    // Funktion til at skjule menuen
+    closeMenu.addEventListener('click', function() {
+        navMobil.style.display = 'none';
+        navMobil.classList.remove('active');
+    });
+});
+
+//--------------------inde i kurv----------------
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.mængde-minus').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const cartItemKey = this.getAttribute('data-cart-item-key');
+            updateCartQuantity(cartItemKey, -1);
+        });
+    });
+
+    document.querySelectorAll('.mængde-plus').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const cartItemKey = this.getAttribute('data-cart-item-key');
+            updateCartQuantity(cartItemKey, 1);
+        });
+    });
+
+    function updateCartQuantity(cartItemKey, change) {
+        const formData = new FormData();
+        formData.append('cart_item_key', cartItemKey);
+        formData.append('quantity_change', change);
+
+        fetch('/wp-admin/admin-ajax.php?action=update_cart_quantity', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload(); // Opdater siden for at vise den nye mængde
+            } else {
+                alert('Kunne ikke opdatere mængden.');
+            }
+        })
+        .catch(error => console.error('Fejl:', error));
+    }
+});

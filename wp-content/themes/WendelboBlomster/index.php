@@ -3,7 +3,7 @@
     <section class="hero" style="background-image: url(<?php echo get_theme_file_uri('/assets/img/heroForside.jpg') ?>);">
         <h1 class="header-forside">Sæt farve på livet med Wendelbo blomster</h1>
         <p class="body-tekst">Bestil smukke buketter, personligt begravelsesbinderi, gaveartikler og meget mere – med mulighed for både udbringning og afhentning</p>
-        <a class="btn-hvid" href="#">Udfork vores udvalg</a>
+        <a class="btn-hvid" href="<?php echo site_url('/voresudvalg') ?>">Udfork vores udvalg</a>
     </section>
 
     <section class="udvalgte">
@@ -81,7 +81,7 @@
     </section>
     <section class="serligDag">
         <h2>Til en særlig dag</h2>
-        <div class="cards">
+        <div class="cardsSerligdag">
             <?php
             $categories = [
                 'romantik' => 'romantik.jpg',

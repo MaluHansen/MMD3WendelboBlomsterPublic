@@ -80,44 +80,6 @@ get_header();
         
    
 </main>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.mængde-minus').forEach(function (button) {
-        button.addEventListener('click', function () {
-            const cartItemKey = this.getAttribute('data-cart-item-key');
-            updateCartQuantity(cartItemKey, -1);
-        });
-    });
-
-    document.querySelectorAll('.mængde-plus').forEach(function (button) {
-        button.addEventListener('click', function () {
-            const cartItemKey = this.getAttribute('data-cart-item-key');
-            updateCartQuantity(cartItemKey, 1);
-        });
-    });
-
-    function updateCartQuantity(cartItemKey, change) {
-        const formData = new FormData();
-        formData.append('cart_item_key', cartItemKey);
-        formData.append('quantity_change', change);
-
-        fetch('/wp-admin/admin-ajax.php?action=update_cart_quantity', {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload(); // Opdater siden for at vise den nye mængde
-            } else {
-                alert('Kunne ikke opdatere mængden.');
-            }
-        })
-        .catch(error => console.error('Fejl:', error));
-    }
-});
-</script>
-
 <?php
 get_footer();
 ?>
